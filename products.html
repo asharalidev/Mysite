@@ -1,0 +1,1256 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Products | PETBot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Internal CSS -->
+  <style>
+    :root {
+      --primary-color: #001f3f;
+      --accent-color: #00b894;
+      --bg-color: #f4f9fc;
+      --text-dark: #1a1a1a;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f4f9fc;
+    }
+
+    .navbar {
+      background-color: var(--primary-color);
+    }
+
+    .navbar-brand,
+    .nav-link {
+      color: white !important;
+    }
+
+    .nav-link:hover {
+      color: var(--accent-color) !important;
+    }
+
+    .logo-img {
+      border-radius: 50%;
+      object-fit: contain;
+    }
+
+    .logo-img:hover {
+      transform: scale(1.1);
+    }
+
+    .page-header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      clip-path: ellipse(120% 100% at 50% 0%);
+    }
+
+    .page-header h1 {
+      margin-bottom: 10px;
+      font-size: 2.8rem;
+    }
+
+    .section-heading {
+      transition: opacity 0.3s ease;
+    }
+
+    .section-heading[style*="display: none"] {
+      opacity: 0;
+    }
+
+
+    .page-header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .product-card {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
+      background: white;
+      transition: transform 0.3s ease;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .product-img {
+      width: 100%;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+
+    .product-info {
+      padding: 15px;
+    }
+
+    .product-info h5 {
+      margin-bottom: 8px;
+    }
+
+    .btn-view {
+      margin-bottom: 8px;
+    }
+
+    footer {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 40px 20px;
+      border-radius: 30px 30px 0 0;
+      margin-top: 60px;
+    }
+
+    footer a {
+      color: white;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      color: var(--accent-color);
+    }
+
+    footer hr {
+      border-color: white;
+      opacity: 0.2;
+    }
+
+    .modal-title {
+      color: var(--primary-color);
+    }
+
+    .dropdown:hover .dropdown-menu {
+      display: block;
+      margin-top: 0.3rem;
+    }
+
+    /* Glow on hover for input and select */
+    .input-group:hover input,
+    .input-group:hover select {
+      box-shadow: 0 0 12px #00b894;
+      /* glowing blue border */
+    }
+
+    /* Optional: glow around icons too */
+    .input-group:hover .input-group-text i {
+      text-shadow: 0 0 6px #00b894;
+    }
+
+    /* Advanced Search & Filter Styling */
+    .advanced-input-group {
+      border-radius: 50px;
+      overflow: hidden;
+      box-shadow: 0 4px 14px rgba(0, 31, 63, 0.1);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .advanced-input-group:hover,
+    .advanced-input-group:focus-within {
+      box-shadow: 0 0 18px #00b894;
+    }
+
+    .advanced-input {
+      border: none;
+      padding: 0.75rem 1.25rem 0.75rem 2.8rem;
+      border-radius: 50px;
+      font-weight: 600;
+      background: #ffffff;
+      color: #001f3f;
+      transition: all 0.3s ease;
+    }
+
+    .advanced-input:focus {
+      outline: none;
+      box-shadow: none;
+    }
+
+    .advanced-icon {
+      position: absolute;
+      top: 50%;
+      left: 18px;
+      transform: translateY(-50%);
+      color: #001f3f;
+      font-size: 1rem;
+      pointer-events: none;
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    .advanced-input-group:hover .advanced-icon,
+    .advanced-input:focus+.advanced-icon,
+    .advanced-input-group select:focus+.advanced-icon {
+      text-shadow: 0 0 6px #00b894;
+      transform: translateY(-50%) scale(1.2);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="images/petbotlogo.png" alt="PETBot Logo" width="140" height="140" class="logo-img">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon bg-light rounded"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link active" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="sitemap.html">Site Map</a></li>
+          <li class="nav-item"><a class="nav-link" href="queries.html">Queries</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="page-header">
+    <h1 class="mb-4" id="bottles">Bottles</h1>
+    <p>Explore our range of bottles and jars</p>
+  </section>
+
+  <!-- Advanced Search & Filter UI -->
+  <div class="container my-5">
+    <div class="row g-3 justify-content-center">
+      <!-- Search Bar -->
+      <div class="col-md-6">
+        <div class="advanced-input-group position-relative">
+          <input type="text" id="searchInput" class="form-control advanced-input" placeholder="Search products...">
+          <i class="fas fa-search advanced-icon"></i>
+        </div>
+      </div>
+
+      <!-- Category Filter -->
+      <div class="col-md-4">
+        <div class="advanced-input-group position-relative">
+          <select id="categoryFilter" class="form-select advanced-input">
+            <option value="">All Categories</option>
+            <option value="Bottle">Bottles</option>
+            <option value="Tumbler">Tumblers</option>
+            <option value="jars">Jars</option>
+          </select>
+          <i class="fas fa-filter advanced-icon"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container py-2">
+    <!-- Bottles Section -->
+
+    <h2 class="section-heading mb-4 text-center" data-section="Bottle">Bottles</h2>
+
+    <div class="row g-4">
+      <!-- Use pattern similar to following for all 9 bottle products -->
+      <!-- 10ml Bottle -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="Bottle">
+          <img src="images/10 ml pet bottle.jpeg" class="product-img" alt="10ml Bottle">
+          <div class="product-info">
+            <h5>10 ml PET Bottle</h5>
+            <p>Price: $0.05/unit</p>
+            <button class="btn btn-primary btn-view" data-bs-toggle="modal" data-bs-target="#modal10ml">View
+              Details</button>
+          </div>
+        </div>
+      </div>
+      <!-- 100ml Bottle -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="Bottle">
+          <img src="images/100 ml pet bottle.png" class="product-img" alt="100ml Bottle">
+          <div class="product-info">
+            <h5>100 ml PET Bottle</h5>
+            <p>Price: $0.08/unit</p>
+            <button class="btn btn-primary btn-view" data-bs-toggle="modal" data-bs-target="#modal100ml">View
+              Details</button>
+          </div>
+        </div>
+      </div>
+      <!-- 250ml Bottle -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="Bottle">
+          <img src="images/250 ml pet bottle.JPG" class="product-img" alt="250ml Bottle">
+          <div class="product-info">
+            <h5>250 ml PET Bottle</h5>
+            <p>Price: $0.09/unit</p>
+            <button class="btn btn-primary btn-view" data-bs-toggle="modal" data-bs-target="#modal250ml">View
+              Details</button>
+          </div>
+        </div>
+      </div>
+      <!-- 345ml Bottle -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="Bottle">
+          <img src="images/345ml pet bottle.png" class="product-img" alt="345ml Bottle">
+          <div class="product-info">
+            <h5>345 ml PET Bottle</h5>
+            <p>Price: $0.10/unit</p>
+            <button class="btn btn-primary btn-view" data-bs-toggle="modal" data-bs-target="#modal345ml">View
+              Details</button>
+          </div>
+        </div>
+      </div>
+      <!-- 500ml Bottle -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="Bottle">
+          <img src="images/500 ml pet bottle.png" class="product-img" alt="500ml Bottle">
+          <div class="product-info">
+            <h5>500 ml PET Bottle</h5>
+            <p>Price: $0.12/unit</p>
+            <button class="btn btn-primary btn-view" data-bs-toggle="modal" data-bs-target="#modal500ml">View
+              Details</button>
+          </div>
+        </div>
+      </div>
+      <!-- 1 Litre Bottle -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="Bottle">
+          <img src="images/1 L pet bottle.png" class="product-img" alt="1 L Bottle">
+          <div class="product-info">
+            <h5>1 L PET Bottle</h5>
+            <p>Price: $0.20/unit</p>
+            <button class="btn btn-primary btn-view" data-bs-toggle="modal" data-bs-target="#modal1l">View
+              Details</button>
+          </div>
+        </div>
+      </div>
+      <!-- 1.5 Litre Bottle -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="Bottle">
+          <img src="images/1.5 L pet bottle.png" class="product-img" alt="1.5 L Bottle">
+          <div class="product-info">
+            <h5>1.5 L PET Bottle</h5>
+            <p>Price: $0.25/unit</p>
+            <button class="btn btn-primary btn-view" data-bs-toggle="modal" data-bs-target="#modal1.5l">View
+              Details</button>
+          </div>
+        </div>
+      </div>
+      <!-- 2.5 Litre Bottle -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="Bottle">
+          <img src="images/petbottle(2.5).jpg" class="product-img" alt="2.5 L Bottle">
+          <div class="product-info">
+            <h5>2.5 L PET Bottle</h5>
+            <p>Price: $0.35/unit</p>
+            <button class="btn btn-primary btn-view" data-bs-toggle="modal" data-bs-target="#modal2_5l">View
+              Details</button>
+          </div>
+        </div>
+      </div>
+      <!-- Additional two bottle cards (e.g. 750ml, 5L) -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="Bottle">
+          <img src="images/petbottle(5).jpg" class="product-img" alt="5 L Bottle">
+          <div class="product-info">
+            <h5>5 L PET Bottle</h5>
+            <p>Price: $0.50/unit</p><button class="btn btn-primary btn-view" data-bs-toggle="modal"
+              data-bs-target="#modal5l">View Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container py-2">
+    <!-- Tumblers Section -->
+    <!-- 1st -->
+
+    <h2 class="section-heading mb-4 text-center" data-section="Tumbler">Tumblers</h2>
+
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="product-card" data-category="Tumbler">
+          <img src="images/Tumblers_1.png" class="product-img" alt="250ml Tumblers">
+          <div class="product-info">
+            <h5> Tumblers Party Acrylic Glass M-2 Pack of 6 - (250ml)</h5>
+            <p>Price: $0.09/unit</p><button class="btn btn-primary btn-view" data-bs-toggle="modal"
+              data-bs-target="#modalTumblers250">View Details</button>
+          </div>
+        </div>
+      </div>
+      <!-- 2nd -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="Tumbler">
+          <img src="images/Tumblers_2.png" class="product-img" alt="Tumblers 400ml">
+          <div class="product-info">
+            <h5> Tumblers Real Acrylic Glass M-2 Pack of 6 - (400ml)</h5>
+            <p>Price: $0.15/unit</p><button class="btn btn-primary btn-view" data-bs-toggle="modal"
+              data-bs-target="#modalTumblers400">View Details</button>
+          </div>
+        </div>
+      </div>
+      <!-- 3rd -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="Tumbler">
+          <img src="images/Tumblers_3.png" class="product-img" alt="Tumblers 400ml M3">
+          <div class="product-info">
+            <h5> Tumblers Real Acrylic Glass M-3 Pack of 6 - (400ml)</h5>
+            <p>Price: $0.20/unit</p><button class="btn btn-primary btn-view" data-bs-toggle="modal"
+              data-bs-target="#modalTumblers401ml">View Details</button>
+          </div>
+        </div>
+      </div>
+      <!-- 4th -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="Tumbler">
+          <img src="images/Tumblers_4.png" class="product-img" alt="Tumblers 400 ml M1">
+          <div class="product-info">
+            <h5> Tumblers Real Acrylic Glass M-1 Pack of 6 - (400ml)</h5>
+            <p>Price: $0.30/unit</p><button class="btn btn-primary btn-view" data-bs-toggle="modal"
+              data-bs-target="#modalTumblers402ml">View Details</button>
+          </div>
+        </div>
+      </div>
+      <!-- 5th -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="Tumbler">
+          <img src="images/Tumblers_5.png" class="product-img" alt="Tumblers 250">
+          <div class="product-info">
+            <h5> Tumblers Party Acrylic Glass M-11 Pack of 6 - (250ml)</h5>
+            <p>Price: $0.40/unit</p><button class="btn btn-primary btn-view" data-bs-toggle="modal"
+              data-bs-target="#modalTumblers251ml">View Details</button>
+          </div>
+        </div>
+      </div>
+      <!-- 6th -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="Tumbler">
+          <img src="images/Tumblers_6.png" class="product-img" alt="Tumblers 250 ml">
+          <div class="product-info">
+            <h5> Tumblers Party Acrylic Glass M-11 Pack of 6 - (250ml)</h5>
+            <p>Price: $0.45/unit</p><button class="btn btn-primary btn-view" data-bs-toggle="modal"
+              data-bs-target="#modalTumblers252ml">View Details</button>
+          </div>
+        </div>
+      </div>
+      <!-- 7th -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="Tumbler">
+          <img src="images/Tumblers_7.png" class="product-img" alt="Tumblers 250ml">
+          <div class="product-info">
+            <h5>Tumblers Party Acrylic Glass M-4 Pack of 6 - (250ml)</h5>
+            <p>Price: $0.55/unit</p><button class="btn btn-primary btn-view" data-bs-toggle="modal"
+              data-bs-target="#modalTumblers253ml">View Details</button>
+          </div>
+        </div>
+      </div>
+      <!-- 8th -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="Tumbler">
+          <img src="images/Tumblers_8.png" class="product-img" alt="Tumblers 250 ml">
+          <div class="product-info">
+            <h5> Tumblers Party Acrylic Glass M-10 Pack of 6 - (250ml)</h5>
+            <p>Price: $0.60/unit</p><button class="btn btn-primary btn-view" data-bs-toggle="modal"
+              data-bs-target="#modalTumblers254ml">View Details</button>
+          </div>
+        </div>
+      </div>
+      <!-- 9th -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="Tumbler">
+          <img src="images/Tumblers_9.png" class="product-img" alt="Tumblers 250 ml">
+          <div class="product-info">
+            <h5> Tumblers Party Acrylic Glass M-1 Pack of 6 - (250ml)</h5>
+            <p>Price: $0.65/unit</p><button class="btn btn-primary btn-view" data-bs-toggle="modal"
+              data-bs-target="#modalTumblers255ml">View Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  <!-- Jars Section --  Modals of tumblers -->
+  <!-- 1st Modal -->
+  <div class="modal fade" id="modalTumblers250" tabindex="-1" aria-labelledby="modalLabelTumblers250"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabelTumblers250">Tumblers 250ml PET</h5><button type="button"
+            class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5"><img src="images/Tumblers_1.png" class="img-fluid rounded"></div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 250 ml</p>
+            <p><strong>Price:</strong> $0.09/unit</p>
+            <p><strong>Description:</strong> Ideal for samples, essential , etc.</p>
+          </div>
+        </div>
+        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button><a
+            href="doc file/250 ml Tumbler.pdf" class="btn btn-outline-primary" download>Download Specs</a></div>
+      </div>
+    </div>
+  </div>
+  <!-- 2nd Modal -->
+  <div class="modal fade" id="modalTumblers400" tabindex="-1" aria-labelledby="modalLabelTumblers400"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabelTumblers250">Tumblers 400ml PET</h5><button type="button"
+            class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5"><img src="images/Tumblers_2.png" class="img-fluid rounded"></div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 250 ml</p>
+            <p><strong>Price:</strong> $0.15/unit</p>
+            <p><strong>Description:</strong> Ideal for samples, essential , etc.</p>
+          </div>
+        </div>
+        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button><a
+            href="doc file/400 ml Tumbler.pdf" class="btn btn-outline-primary" download>Download Specs</a></div>
+      </div>
+    </div>
+  </div>
+  <!-- 3rd Modal -->
+  <div class="modal fade" id="modalTumblers401ml" tabindex="-1" aria-labelledby="modalLabelTumblers401ml"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabelTumblers401">Tumblers 400ml PET</h5><button type="button"
+            class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5"><img src="images/Tumblers_3.png" class="img-fluid rounded"></div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 400 ml</p>
+            <p><strong>Price:</strong> $0.20/unit</p>
+            <p><strong>Description:</strong> Ideal for samples, essential , etc.</p>
+          </div>
+        </div>
+        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button><a
+            href="doc file/400 ml Tumbler.pdf" class="btn btn-outline-primary" download>Download Specs</a></div>
+      </div>
+    </div>
+  </div>
+  <!-- 4th Modal -->
+  <div class="modal fade" id="modalTumblers402ml" tabindex="-1" aria-labelledby="modalLabelTumblers402ml"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabelTumblers402">Tumblers 250ml PET</h5><button type="button"
+            class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5"><img src="images/Tumblers_4.png" class="img-fluid rounded"></div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 400 ml</p>
+            <p><strong>Price:</strong> $0.30/unit</p>
+            <p><strong>Description:</strong> Ideal for samples, essential , etc.</p>
+          </div>
+        </div>
+        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button><a
+            href="doc file/400 ml Tumbler.pdf" class="btn btn-outline-primary" download>Download Specs</a></div>
+      </div>
+    </div>
+  </div>
+  <!-- 5th Modal -->
+  <div class="modal fade" id="modalTumblers251ml" tabindex="-1" aria-labelledby="modalLabelTumblers251ml"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabelTumblers251ml">Tumblers 250ml PET</h5><button type="button"
+            class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5"><img src="images/Tumblers_5.png" class="img-fluid rounded"></div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 250 ml</p>
+            <p><strong>Price:</strong> $0.40/unit</p>
+            <p><strong>Description:</strong> Ideal for samples, essential , etc.</p>
+          </div>
+        </div>
+        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button><a
+            href="doc file/250 ml Tumbler.pdf" class="btn btn-outline-primary" download>Download Specs</a></div>
+      </div>
+    </div>
+  </div>
+  <!-- 6th Modal -->
+  <div class="modal fade" id="modalTumblers252ml" tabindex="-1" aria-labelledby="modalLabelTumblers252ml"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabelTumblers252ml">Tumblers 250ml PET</h5><button type="button"
+            class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5"><img src="images/Tumblers_6.png" class="img-fluid rounded"></div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 250 ml</p>
+            <p><strong>Price:</strong> $0.45/unit</p>
+            <p><strong>Description:</strong> Ideal for samples, essential , etc.</p>
+          </div>
+        </div>
+        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button><a
+            href="doc file/250 ml Tumbler.pdf" class="btn btn-outline-primary" download>Download Specs</a></div>
+      </div>
+    </div>
+  </div>
+  <!-- 7th Modal -->
+  <div class="modal fade" id="modalTumblers253ml" tabindex="-1" aria-labelledby="modalLabelTumblers253ml"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabelTumblers253ml">Tumblers 250ml PET</h5><button type="button"
+            class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5"><img src="images/Tumblers_7.png" class="img-fluid rounded"></div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 250 ml</p>
+            <p><strong>Price:</strong> $0.55/unit</p>
+            <p><strong>Description:</strong> Ideal for samples, essential , etc.</p>
+          </div>
+        </div>
+        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button><a
+            href="doc file/250 ml Tumbler.pdf" class="btn btn-outline-primary" download>Download Specs</a></div>
+      </div>
+    </div>
+  </div>
+  <!-- 8th Modal -->
+  <div class="modal fade" id="modalTumblers254ml" tabindex="-1" aria-labelledby="modalLabelTumblers254ml"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabelTumblers254ml">Tumblers 250ml PET</h5><button type="button"
+            class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5"><img src="images/Tumblers_8.png" class="img-fluid rounded"></div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 250 ml</p>
+            <p><strong>Price:</strong> $0.60/unit</p>
+            <p><strong>Description:</strong> Ideal for samples, essential , etc.</p>
+          </div>
+        </div>
+        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button><a
+            href="doc file/250 ml Tumbler.pdf" class="btn btn-outline-primary" download>Download Specs</a></div>
+      </div>
+    </div>
+  </div>
+  <!-- 9th Modal -->
+  <div class="modal fade" id="modalTumblers255ml" tabindex="-1" aria-labelledby="modalLabelTumblers255ml"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabelTumblers255ml">Tumblers 250ml PET</h5><button type="button"
+            class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5"><img src="images/Tumblers_9.png" class="img-fluid rounded"></div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 250 ml</p>
+            <p><strong>Price:</strong> $0.65/unit</p>
+            <p><strong>Description:</strong> Ideal for samples, essential , etc.</p>
+          </div>
+        </div>
+        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button><a
+            href="doc file/250 ml Tumbler.pdf" class="btn btn-outline-primary" download>Download Specs</a></div>
+      </div>
+    </div>
+  </div>
+  <!-- Bottles Modals (Nine total – shown first three for brevity; copy-paste pattern for others) -->
+  <!-- 10 ml -->
+  <div class="modal fade" id="modal10ml" tabindex="-1" aria-labelledby="modalLabel10ml" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel10ml">10 ml PET Bottle</h5><button type="button" class="btn-close"
+            data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5"><img src="images/10 ml pet bottle.jpeg" class="img-fluid rounded"></div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 10 ml</p>
+            <p><strong>Price:</strong> $0.05/unit</p>
+            <p><strong>Description:</strong> Ideal for samples, essential oils, etc.</p>
+          </div>
+        </div>
+        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button><a
+            href="doc file/10_ml_Bottle.pdf" class="btn btn-outline-primary" download>Download Specs</a></div>
+      </div>
+    </div>
+  </div>
+  <!-- 100 ml  -->
+  <div class="modal fade" id="modal100ml" tabindex="-1" aria-labelledby="modalLabel100ml" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel100ml">100 ml PET Bottle</h5><button type="button" class="btn-close"
+            data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5"><img src="images/100 ml pet bottle.png" class="img-fluid rounded"></div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 100 ml</p>
+            <p><strong>Price:</strong> $0.08/unit</p>
+            <p><strong>Description:</strong> Ideal for samples, essential oils, etc.</p>
+          </div>
+        </div>
+        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button><a
+            href="doc file/100_ml_Bottle.pdf" class="btn btn-outline-primary" download>Download Specs</a></div>
+      </div>
+    </div>
+  </div>
+  <!-- 250 ml -->
+  <div class="modal fade" id="modal250ml" tabindex="-1" aria-labelledby="modalLabel250ml" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel250ml">250 ml PET Bottle</h5><button type="button" class="btn-close"
+            data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5"><img src="images/250 ml pet bottle.JPG" class="img-fluid rounded"></div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 250 ml</p>
+            <p><strong>Price:</strong> $0.09/unit</p>
+            <p><strong>Description:</strong> Ideal for samples, essential oils, etc.</p>
+          </div>
+        </div>
+        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button><a
+            href="doc file/250_ml_Bottle.pdf" class="btn btn-outline-primary" download>Download Specs</a></div>
+      </div>
+    </div>
+  </div>
+  <!-- 345 ml -->
+  <div class="modal fade" id="modal345ml" tabindex="-1" aria-labelledby="modalLabel345ml" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel345ml">345 ml PET Bottle</h5><button type="button" class="btn-close"
+            data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5"><img src="images/345ml pet bottle.png" class="img-fluid rounded"></div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 345 ml</p>
+            <p><strong>Price:</strong> $0.10/unit</p>
+            <p><strong>Description:</strong> Ideal for samples, essential oils, etc.</p>
+          </div>
+        </div>
+        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button><a
+            href="doc file/345_ml_Bottle.pdf" class="btn btn-outline-primary" download>Download Specs</a></div>
+      </div>
+    </div>
+  </div>
+  <!-- 500 ml -->
+  <div class="modal fade" id="modal500ml" tabindex="-1" aria-labelledby="modalLabel500ml" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel500ml">500 ml PET Bottle</h5><button type="button" class="btn-close"
+            data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5"><img src="images/500 ml pet bottle.png" class="img-fluid rounded"></div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 500 ml</p>
+            <p><strong>Price:</strong> $0.12/unit</p>
+            <p><strong>Description:</strong> Ideal for samples, essential oils, etc.</p>
+          </div>
+        </div>
+        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button><a
+            href="doc file/500_ml_Bottle.pdf" class="btn btn-outline-primary" download>Download Specs</a></div>
+      </div>
+    </div>
+  </div>
+  <!-- 1 litre -->
+  <div class="modal fade" id="modal1l" tabindex="-1" aria-labelledby="modal1l" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel1l">1 L PET Bottle</h5><button type="button" class="btn-close"
+            data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5"><img src="images/1 L pet bottle.png" class="img-fluid rounded"></div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 1 L</p>
+            <p><strong>Price:</strong> $0.20/unit</p>
+            <p><strong>Description:</strong> Ideal for samples, essential oils, etc.</p>
+          </div>
+        </div>
+        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button><a
+            href="doc file/1_litre_Bottle.pdf" class="btn btn-outline-primary" download>Download Specs</a></div>
+      </div>
+    </div>
+  </div>
+  <!-- 1.5 litre -->
+  <div class="modal fade" id="modal1.5l" tabindex="-1" aria-labelledby="modalLabel1.5l" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel1.5l">1.5 L PET Bottle</h5><button type="button" class="btn-close"
+            data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5"><img src="images/1.5 L pet bottle.png" class="img-fluid rounded"></div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 1.5 L</p>
+            <p><strong>Price:</strong> $0.25/unit</p>
+            <p><strong>Description:</strong> Ideal for samples, essential oils, etc.</p>
+          </div>
+        </div>
+        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button><a
+            href="doc file/1.5_litre_Bottle.pdf" class="btn btn-outline-primary" download>Download Specs</a></div>
+      </div>
+    </div>
+  </div>
+  <!-- 2.5liter -->
+  <div class="modal fade" id="modal2_5l" tabindex="-1" aria-labelledby="modalLabel2_5l" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel2_5l">2.5 L PET Bottle</h5><button type="button" class="btn-close"
+            data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5"><img src="images/petbottle(2.5).jpg" class="img-fluid rounded"></div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 2.5 L</p>
+            <p><strong>Price:</strong> $0.35/unit</p>
+            <p><strong>Description:</strong> Ideal for samples, essential oils, etc.</p>
+          </div>
+        </div>
+        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button><a
+            href="doc file/2.5_litre_Bottle.pdf" class="btn btn-outline-primary" download> Download Specs</a></div>
+      </div>
+    </div>
+  </div>
+  <!--5liter -->
+  <div class="modal fade" id="modal5l" tabindex="-1" aria-labelledby="modalLabel5l" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabel5l">5 L PET Bottle</h5><button type="button" class="btn-close"
+            data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5"><img src="images/petbottle(5).jpg" class="img-fluid rounded"></div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 5L</p>
+            <p><strong>Price:</strong> $0.50/unit</p>
+            <p><strong>Description:</strong> Ideal for samples, essential oils, etc.</p>
+          </div>
+        </div>
+        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button><a
+            href="doc file/5_litre_Bottle.pdf" class="btn btn-outline-primary" download> Download Specs</a></div>
+      </div>
+    </div>
+  </div>
+  <!-- Repeat modals for the other 8 bottles (IDs modal100ml, modal345ml, etc.) -->
+
+  <!-- Jar Modals (IDs modalJar250, modalJar500, … modalJar7l) -->
+  <div class="modal fade" id="modalJar250" tabindex="-1" aria-labelledby="modalLabelJar250" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabelJar250">250 ml Spice Jar</h5><button type="button" class="btn-close"
+            data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5"><img src="images/jars 1.png" class="img-fluid rounded"></div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Capacity:</strong> 250 ml</p>
+            <p><strong>Price:</strong> $0.09/unit</p>
+            <p><strong>Description:</strong> Compact spice jar with airtight seal.</p>
+          </div>
+        </div>
+        <div class="modal-footer"><button class="btn btn-secondary" data-bs-dismiss="modal">Close</button><a
+            href="doc file/250 ml PET Jar.pdf" class="btn btn-outline-primary" download> Download Specs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container py-2">
+
+      <h2 class="section-heading mb-4 text-center" data-section="jars">Jars</h2>
+
+    <div class="row g-4">
+      <!-- 250ml Jar -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="jars">
+          <img src="images/jars 1.png" class="product-img" alt="250ml Jar">
+          <div class="product-info">
+            <h5>250 ml PET Jars</h5>
+            <p>Price: $0.09/unit</p>
+            <button class="btn btn-primary btn-view" data-bs-toggle="modal" data-bs-target="#modalJar250">View
+              Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 500ml Jar -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="jars">
+          <img src="images/jars 2.png" class="product-img" alt="500ml Jar">
+          <div class="product-info">
+            <h5>500 ml PET Jars</h5>
+            <p>Price: $0.12/unit</p>
+            <button class="btn btn-primary btn-view" data-bs-toggle="modal" data-bs-target="#modalJar500">View
+              Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 1L Jar -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="jars">
+          <img src="images/jars 3.png" class="product-img" alt="1L Jar">
+          <div class="product-info">
+            <h5>1 L PET Jars</h5>
+            <p>Price: $0.18/unit</p>
+            <button class="btn btn-primary btn-view" data-bs-toggle="modal" data-bs-target="#modalJar1l">View
+              Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Jars Modals -->
+  <!-- 250ml Modal -->
+  <div class="modal fade" id="modalJar250" tabindex="-1" aria-labelledby="modalLabelJar250" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabelJar250">250 ml PET Jar</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5">
+            <img src="" class="img-fluid rounded">
+          </div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 250 ml</p>
+            <p><strong>Price:</strong> $0.09/unit</p>
+            <p><strong>Description:</strong> Airtight and ideal for spices or dry food.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a href="doc file/250 ml PET Jar.pdf" class="btn btn-outline-primary" download>Download Specs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 500ml Jar Modal -->
+  <div class="modal fade" id="modalJar500" tabindex="-1" aria-labelledby="modalLabelJar500" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabelJar500">500 ml PET Jar</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5">
+            <img src="images/jars 2.png" class="img-fluid rounded">
+          </div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 500 ml</p>
+            <p><strong>Price:</strong> $0.12/unit</p>
+            <p><strong>Description:</strong> Perfect for pantry storage and grains.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a href="doc file/500 ml PET Jar.pdf" class="btn btn-outline-primary" download>Download Specs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 1L Modal -->
+  <div class="modal fade" id="modalJar1l" tabindex="-1" aria-labelledby="modalLabelJar1l" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabelJar1l">1 L PET Jar</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5">
+            <img src="images/jars 3.png" class="img-fluid rounded">
+          </div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 1 L</p>
+            <p><strong>Price:</strong> $0.18/unit</p>
+            <p><strong>Description:</strong> Great for storing snacks, grains, or pasta.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a href="doc file/1 Litre PET Jar.pdf" class="btn btn-outline-primary" download>Download Specs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container py-5">
+    <div class="row g-4">
+      <!-- 2L Jar -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="jars">
+          <img src="images/jars 4.png" class="product-img" alt="2L Jar">
+          <div class="product-info">
+            <h5>2L PET Jars</h5>
+            <p>Price: $0.20/unit</p>
+            <button class="btn btn-primary btn-view" data-bs-toggle="modal" data-bs-target="#modal2L">View
+              Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2.5L Jar -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="jars">
+          <img src="images/jars 5.png" class="product-img" alt="2.5LJar">
+          <div class="product-info">
+            <h5>2.5L PET Jars</h5>
+            <p>Price: $0.25/unit</p>
+            <button class="btn btn-primary btn-view" data-bs-toggle="modal" data-bs-target="#modalJar2.5L">View
+              Details</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3L Jar -->
+      <div class="col-md-4">
+        <div class="product-card" data-category="jars">
+          <img src="images/jars 6.png" class="product-img" alt="3L Jar">
+          <div class="product-info">
+            <h5>3L PET Jars</h5>
+            <p>Price: $0.30/unit</p>
+            <button class="btn btn-primary btn-view" data-bs-toggle="modal" data-bs-target="#modalJar3L">View
+              Details</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
+  <!-- Jars Modals -->
+  <!-- 2L Modal -->
+  <div class="modal fade" id="modal2L" tabindex="-1" aria-labelledby="modalLabelJar2L" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modal2L">2L PET Jar</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5">
+            <img src="images/jars 4.png" class="img-fluid rounded">
+          </div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 2L</p>
+            <p><strong>Price:</strong> $0.20/unit</p>
+            <p><strong>Description:</strong> Airtight and ideal for spices or dry food.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a href="doc file/2 Litre PET Jar.pdf" class="btn btn-outline-primary" download>Download Specs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.5L Modal -->
+  <div class="modal fade" id="modalJar2.5L" tabindex="-1" aria-labelledby="modalLabelJar2.5L" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabelJar2.5L">2.5L PET Jar</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5">
+            <img src="images/jars 5.png" class="img-fluid rounded">
+          </div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 2.5L</p>
+            <p><strong>Price:</strong> $0.25/unit</p>
+            <p><strong>Description:</strong> Perfect for pantry storage and grains.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a href="doc file/2.5_litre_jar.pdf" class="btn btn-outline-primary" download>Download Specs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3L Modal -->
+  <div class="modal fade" id="modalJar3L" tabindex="-1" aria-labelledby="modalLabelJar3L" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+      <div class="modal-content text-dark">
+        <div class="modal-header">
+          <h5 class="modal-title" id="modalLabelJar3L">3L PET Jar</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body row">
+          <div class="col-md-5">
+            <img src="images/jars 6.png" class="img-fluid rounded">
+          </div>
+          <div class="col-md-7">
+            <p><strong>Material:</strong> PET</p>
+            <p><strong>Volume:</strong> 3L</p>
+            <p><strong>Price:</strong> $0.25/unit</p>
+            <p><strong>Description:</strong> Great for storing snacks, grains, or pasta.</p>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <a href="doc file/3 Litre PET Jar.pdf" class="btn btn-outline-primary" download>Download Specs</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
+<!-- Footer -->
+<footer>
+  <div class="container text-center text-md-start py-4">
+    <div class="row">
+      <div class="col-md-4 mb-4">
+        <h5>PETBot Company</h5>
+        <p>Advanced Bottle Manufacturing Unit</p>
+        <p><strong>Email:</strong> info@petbot.com</p>
+        <p><strong>Phone:</strong> +92-300-1234567</p>
+      </div>
+      <div class="col-md-4 mb-4">
+        <h5>Quick Links</h5>
+        <ul class="list-unstyled">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="products.html">Products</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="contact.html">Contact Us</a></li>
+          <li><a href="queries.html">Queries</a></li>
+          <li><a href="sitemap.html">Site Map</a></li>
+        </ul>
+      </div>
+      <!-- Social Icons -->
+      <div class="col-md-4 footer-section mb-4">
+        <h5>Follow Us</h5>
+        <p>
+          <a href="https://www.facebook.com" class="text-white text-decoration-none">
+            <i class="fab fa-facebook-f me-2"></i> Facebook
+          </a>
+        </p>
+        <p>
+          <a href="https://www.instagram.com" class="text-white text-decoration-none">
+            <i class="fab fa-instagram me-2"></i> Instagram
+          </a>
+        </p>
+        <p>
+          <a href="https://pk.linkedin.com" class="text-white text-decoration-none">
+            <i class="fab fa-linkedin-in me-2"></i> LinkedIn
+          </a>
+        </p>
+      </div>
+    </div>
+
+    <hr />
+    <div class="text-center small">
+      &copy; 2025 PETBot. All rights reserved.
+    </div>
+  </div>
+</footer>
+</body>
+
+</html>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  const searchInput = document.getElementById('searchInput');
+  const categoryFilter = document.getElementById('categoryFilter');
+  const productCards = document.querySelectorAll('.product-card');
+
+  function filterProducts() {
+    const searchText = searchInput.value.toLowerCase();
+    const selectedCategory = categoryFilter.value;
+
+    // Filter product cards
+    productCards.forEach(card => {
+      const title = card.querySelector('h5').textContent.toLowerCase();
+      const category = card.getAttribute('data-category');
+      const matchSearch = title.includes(searchText);
+      const matchCategory = !selectedCategory || category === selectedCategory;
+      card.parentElement.style.display = (matchSearch && matchCategory) ? 'block' : 'none';
+    });
+
+    // Hide section headings if no visible product cards
+    const headings = document.querySelectorAll('.section-heading');
+    headings.forEach(heading => {
+      const section = heading.getAttribute('data-section');
+      const cards = document.querySelectorAll(`.product-card[data-category="${section}"]`);
+      const anyVisible = Array.from(cards).some(card => card.parentElement.style.display !== 'none');
+      heading.style.display = anyVisible ? 'block' : 'none';
+    });
+  }
+
+  searchInput.addEventListener('input', filterProducts);
+  categoryFilter.addEventListener('change', filterProducts);
+  window.addEventListener('DOMContentLoaded', filterProducts);
+</script>

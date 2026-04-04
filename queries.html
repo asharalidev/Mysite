@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Business Queries | PETBot</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+
+  <!-- Internal CSS -->
+  <style>
+    :root {
+      --primary-color: #001f3f;
+      --accent-color: #00b894;
+      --bg-color: #f4f9fc;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      margin: 0;
+    }
+
+    .navbar {
+      background-color: var(--primary-color);
+    }
+
+    .navbar-brand,
+    .nav-link {
+      color: white !important;
+    }
+
+    .nav-link:hover {
+      color: var(--accent-color) !important;
+    }
+
+    .logo-img {
+      border-radius: 50%;
+      object-fit: contain;
+    }
+
+    .logo-img:hover {
+      transform: scale(1.1);
+    }
+
+    .page-header {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+      clip-path: ellipse(120% 100% at 50% 0%);
+
+    }
+
+    .page-header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+    }
+
+    .query-section {
+      padding: 50px 20px;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .query-form {
+      background-color: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    .form-control:focus {
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 0.2rem rgba(0, 184, 148, 0.25);
+    }
+
+    .btn-primary {
+      background-color: var(--primary-color);
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-color);
+    }
+
+    footer {
+      background-color: var(--primary-color);
+      color: white;
+      padding-top: 40px;
+      margin-top: 60px;
+      border-radius: 30px 30px 0 0;
+    }
+
+    footer h5 {
+      font-size: 1.2rem;
+      margin-bottom: 15px;
+    }
+
+    footer a {
+      text-decoration: none;
+      color: white;
+    }
+
+    footer a:hover {
+      color: var(--accent-color);
+    }
+
+    footer hr {
+      border-color: white;
+      opacity: 0.2;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="images/petbotlogo.png" alt="PETBot Logo" width="140" height="140" class="logo-img">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon bg-light rounded"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="products.html">Products</a></li>
+          <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html">Contact Us</a></li>
+          <li class="nav-item"><a class="nav-link" href="sitemap.html">Site Map</a></li>
+          <li class="nav-item"><a class="nav-link" href="queries.html">Queries</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <section class="page-header">
+    <h1>Business Queries</h1>
+    <p>Have a project or bulk requirement? Reach out to us.</p>
+  </section>
+
+  <!-- Query Form Section -->
+  <section class="query-section">
+    <div class="query-form">
+      <h4 class="mb-3">Submit Your Query</h4>
+      <form id="queryForm" novalidate>
+        <!-- Name -->
+        <div class="mb-3">
+          <label for="qname" class="form-label">Your Name</label>
+          <input type="text" class="form-control" id="qname" name="name" required>
+          <div id="error-name" class="text-danger small mt-1"></div>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-3">
+          <label for="qemail" class="form-label">Email Address</label>
+          <input type="email" class="form-control" id="qemail" name="email" required>
+          <div id="error-email" class="text-danger small mt-1"></div>
+        </div>
+
+        <!-- Subject -->
+        <div class="mb-3">
+          <label for="qsubject" class="form-label">Subject</label>
+          <input type="text" class="form-control" id="qsubject" name="subject" required>
+          <div id="error-subject" class="text-danger small mt-1"></div>
+        </div>
+
+        <!-- Message -->
+        <div class="mb-3">
+          <label for="qmessage" class="form-label">Message / Requirements</label>
+          <textarea class="form-control" id="qmessage" name="message" rows="4" required></textarea>
+          <div id="error-message" class="text-danger small mt-1"></div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="mb-3 text-end">
+          <button type="submit" class="btn btn-primary px-4">Submit</button>
+        </div>
+
+        <!-- Response Message -->
+        <div id="query-response" class="mt-2 fw-semibold"></div>
+      </form>
+    </div>
+  </section>
+
+
+
+
+  <!-- Footer -->
+  <footer>
+    <div class="container text-center text-md-start py-4">
+      <div class="row text-white">
+        <div class="col-md-4 mb-4">
+          <h5>PETBot Company</h5>
+          <p>Advanced Bottle Manufacturing Unit</p>
+          <p><strong>Address:</strong> Plot #12, Industrial Zone, Karachi, Pakistan</p>
+          <p><strong>Email:</strong> info@petbot.com</p>
+          <p><strong>Phone:</strong> +92-300-1234567</p>
+        </div>
+        <div class="col-md-4 mb-4">
+          <h5>Quick Links</h5>
+          <ul class="list-unstyled">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="products.html">Products</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
+            <li><a href="sitemap.html">Site Map</a></li>
+            <li><a href="queries.html">Queries</a></li>
+          </ul>
+        </div>
+        <!-- Social Icons -->
+        <div class="col-md-4 footer-section mb-4">
+          <h5>Follow Us</h5>
+          <p>
+            <a href="https://www.facebook.com" class="text-white text-decoration-none">
+              <i class="fab fa-facebook-f me-2"></i> Facebook
+            </a>
+          </p>
+          <p>
+            <a href="https://www.instagram.com" class="text-white text-decoration-none">
+              <i class="fab fa-instagram me-2"></i> Instagram
+            </a>
+          </p>
+          <p>
+            <a href="https://pk.linkedin.com" class="text-white text-decoration-none">
+              <i class="fab fa-linkedin-in me-2"></i> LinkedIn
+            </a>
+          </p>
+        </div>
+      </div>
+      <hr />
+
+      <hr class="border-white">
+      <div class="text-center text-white small">
+        &copy; 2025 PETBot. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Internal JS for Query Form -->
+  <script>
+    function clearErrors() {
+      const errorIds = ['error-name', 'error-email', 'error-subject', 'error-message'];
+      errorIds.forEach(id => document.getElementById(id).textContent = '');
+      document.querySelectorAll('.form-control').forEach(input => input.classList.remove('is-invalid'));
+    }
+
+    function submitQuery(e) {
+      e.preventDefault();
+      clearErrors();
+
+      let hasError = false;
+
+      const name = document.getElementById('qname').value.trim();
+      const email = document.getElementById('qemail').value.trim();
+      const subject = document.getElementById('qsubject').value.trim();
+      const message = document.getElementById('qmessage').value.trim();
+
+      // Name
+      const namePattern = /^[A-Za-z]+(?:\s[A-Za-z]+)*$/;
+      if (!name) {
+        document.getElementById('error-name').textContent = 'Name is required.';
+        document.getElementById('qname').classList.add('is-invalid');
+        hasError = true;
+      } else if (name.length < 2 || name.length > 50 || !namePattern.test(name)) {
+        document.getElementById('error-name').textContent = 'Name must be 2–50 letters only.';
+        document.getElementById('qname').classList.add('is-invalid');
+        hasError = true;
+      }
+
+      // Email
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email) {
+        document.getElementById('error-email').textContent = 'Email is required.';
+        document.getElementById('qemail').classList.add('is-invalid');
+        hasError = true;
+      } else if (!emailPattern.test(email)) {
+        document.getElementById('error-email').textContent = 'Invalid email format.';
+        document.getElementById('qemail').classList.add('is-invalid');
+        hasError = true;
+      }
+
+      // Subject
+      if (!subject) {
+        document.getElementById('error-subject').textContent = 'Subject is required.';
+        document.getElementById('qsubject').classList.add('is-invalid');
+        hasError = true;
+      } else if (subject.length < 3 || subject.length > 100) {
+        document.getElementById('error-subject').textContent = 'Subject must be 3–100 characters.';
+        document.getElementById('qsubject').classList.add('is-invalid');
+        hasError = true;
+      }
+
+      // Message
+      if (!message) {
+        document.getElementById('error-message').textContent = 'Message is required.';
+        document.getElementById('qmessage').classList.add('is-invalid');
+        hasError = true;
+      } else if (message.length < 10 || message.length > 500) {
+        document.getElementById('error-message').textContent = 'Message must be 10–500 characters.';
+        document.getElementById('qmessage').classList.add('is-invalid');
+        hasError = true;
+      }
+
+      // If no errors, show success
+      if (!hasError) {
+        document.getElementById('query-response').classList.remove('text-danger');
+        document.getElementById('query-response').classList.add('text-success');
+        document.getElementById('query-response').textContent = '✅ Your query has been submitted successfully!';
+        document.getElementById('queryForm').reset();
+
+        setTimeout(() => {
+          document.getElementById('query-response').textContent = '';
+        }, 5000);
+      } else {
+        document.getElementById('query-response').classList.remove('text-success');
+        document.getElementById('query-response').classList.add('text-danger');
+        document.getElementById('query-response').textContent = '❌ Please fix the errors above.';
+      }
+    }
+    document.getElementById('queryForm').addEventListener('submit', submitQuery);
+
+
+
+  </script>
+</body>
+
+</html>
